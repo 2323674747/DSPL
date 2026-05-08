@@ -1,18 +1,4 @@
-# Disentangled Feature Representation for Few-Shot Image Classification
-
-The code repository for "Disentangled Feature Representation for Few-Shot Image Classification" [[paper]](https://ieeexplore.ieee.org/abstract/document/10045748) (Accepted by IEEE TNNLS 2023) in PyTorch. If you use any content of this repo for your work, please cite the following bib entry:
-
-    @article{cheng2023disentangled,
-        title={Disentangled feature representation for few-shot image classification},
-        author={Cheng, Hao and Wang, Yufei and Li, Haoliang and Kot, Alex C and Wen, Bihan},
-        journal={IEEE Transactions on Neural Networks and Learning Systems},
-        year={2023},
-        publisher={IEEE}
-    }
-
-## Abstract
-
-Learning the generalizable feature representation is critical for few-shot image classification. While recent works exploited task-specific feature embedding using meta-tasks for few-shot learning, they are limited in many challenging tasks as being distracted by the excursive features such as the background, domain, and style of the image samples. In this work, we propose a novel Disentangled Feature Representation framework, dubbed DFR, for few-shot learning applications. DFR can adaptively decouple the discriminative features that are modeled by the classification branch, from the class-irrelevant component of the variation branch. In general, most of the popular deep few-shot learning methods can be plugged in as the classification branch, thus DFR can boost their performance on various few-shot tasks. Furthermore, we propose a novel FS-DomainNet dataset based on DomainNet, for benchmarking the few-shot domain generalization tasks. We conducted extensive experiments to evaluate the proposed DFR on general, fine-grained, and cross-domain few-shot classification, as well as few-shot domain generalization, using the corresponding four benchmarks, i.e., mini-ImageNet, tiered-ImageNet, CUB, as well as the proposed FS-DomainNet. Thanks to the effective feature disentangling, the DFR-based few-shot classifiers achieved state-of-the-art results on all datasets.
+# DSPL: Stable Representation Learning via Disentangled and Structure-Aware Prototype Learning for Few-Shot Image Classification
 
 
 ## Prerequisites
@@ -96,21 +82,21 @@ The dataset directory should look like this:
 Please use **train_fsl.py** and follow the instructions below.
 
 
-## Training scripts for DFR (Here we take DFR+FEAT as an example)
+## Training scripts for DSPL
 
-For example, to train the 1-shot/5-shot 5-way DFR with FEAT model with ResNet-12 backbone on MiniImageNet:
+For example, to train the 1-shot/5-shot 5-way with ResNet-12 backbone on MiniImageNet:
 
     $ python train_fsl.py --gpu 0 --way 15 --lr 0.0005 --step_size 10 --max_epoch 60 --eval_way 5 --eval_shot 1
 
     $ python train_fsl.py --gpu 0 --way 10 --lr 0.0005 --step_size 10 --max_epoch 60 --eval_way 5 --eval_shot 5
 
-to train the 1-shot/5-shot 5-way DFR with FEAT model with ResNet-12 backbone on TieredImageNet:
+to train the 1-shot/5-shot 5-way  with ResNet-12 backbone on TieredImageNet:
 
     $ python train_fsl.py --gpu 0 --way 15 --step_size 10 --max_epoch 100 --lr 0.0005 --dataset TieredImageNet --init_weights ./initialization/tieredimagenet/Res12-pre.pth --eval_way 5 --eval_shot 1
 
     $ python train_fsl.py --gpu 0 --step_size 20 --gamma 0.5 --dataset TieredImageNet --init_weights ./initialization/tieredimagenet/Res12-pre.pth --eval_way 5 --eval_shot 5
 
-to train the 1-shot/5-shot 5-way DFR with FEAT model with ResNet-12 backbone on CUB-200-2011:
+to train the 1-shot/5-shot 5-way  with ResNet-12 backbone on CUB-200-2011:
 
 Pretraining:
 
@@ -122,7 +108,7 @@ Meta-Training:
 
     $ python train_fsl.py --gpu 0 --max_epoch 80 --step_size 20 --gamma 0.5 --dataset CUB --init_weights ./initialization/cub/max_acc_dist.pth --eval_way 5 --eval_shot 5 
 
-to train the 1-shot/5-shot 5-way DFR with FEAT model with ResNet-12 backbone (Pretrained on Tiered-ImageNet Dataset) on FS-DomainNet:
+to train the 1-shot/5-shot 5-way  with ResNet-12 backbone (Pretrained on Tiered-ImageNet Dataset) on FS-DomainNet:
 
 Use ''tid'' to select the target domain. (from 0 to 5)
 
@@ -143,3 +129,4 @@ Our code builds upon the following code publicly available, and thank the follow
 - [FEAT](https://github.com/Sha-Lab/FEAT)
 
 - [DeepEMD](https://github.com/icoz69/DeepEMD)
+- [DFRFS](https://github.com/chengcv/DFRFS)
